@@ -1,6 +1,6 @@
 package group.bonjai.bodhi.models;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,21 +10,14 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Builder
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
-@NoArgsConstructor()
-@Getter
-@Setter()
-public class Department {
-
+public class Admin {
     @Id
     @GeneratedValue
     private UUID id;
 
     @Column(unique = true, nullable = false)
-    private String fullName;
+    private String email;
 
-    @Column(unique = true, nullable = false)
-    private String shortName;
-
+    @Column(nullable = false)
+    private String password;
 }
