@@ -24,27 +24,27 @@ public class CreateDepartmentController {
     @PostMapping(value = "/")
     public CreateDepartmentResponse createDepartment(@Valid @RequestBody CreateDepartmentRequest request) throws UniqueConstraintViolation {
         Department department = Department.builder()
-                                .fullName(request.getFullName())
-                                .shortName(request.getShortName())
-                                .build();
+                .fullName(request.getFullName())
+                .shortName(request.getShortName())
+                .build();
 
 
         Teacher hod = Teacher.builder()
-                                 .email(request.getHodEmail())
-                                 .firstName(request.getHodFirstName())
-                                 .middleName(request.getHodMiddleName())
-                                  .lastName(request.getHodLastName())
-                                 .phoneNumber(request.getHodPhoneNumber())
-                                 .password("PASSWORD")
-                                 .role(Teacher.HOD)
-                                 .build();
+                .email(request.getHodEmail())
+                .firstName(request.getHodFirstName())
+                .middleName(request.getHodMiddleName())
+                .lastName(request.getHodLastName())
+                .phoneNumber(request.getHodPhoneNumber())
+                .password("PASSWORD")
+                .role(Teacher.HOD)
+                .build();
 
         Department persistedDepartment = createDepartmentUseCase.execute(department, hod);
 
         return new CreateDepartmentResponse(HttpStatus.CREATED)
-                        .departmentUUID(persistedDepartment.getId())
-                        .departmentFullName(persistedDepartment.getFullName())
-                        .departmentShortName(persistedDepartment.getShortName());
+                .departmentUUID(persistedDepartment.getId())
+                .departmentFullName(persistedDepartment.getFullName())
+                .departmentShortName(persistedDepartment.getShortName());
 
     }
 }
