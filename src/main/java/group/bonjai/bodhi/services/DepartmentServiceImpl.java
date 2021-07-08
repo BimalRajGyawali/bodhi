@@ -1,5 +1,6 @@
 package group.bonjai.bodhi.services;
 
+import group.bonjai.bodhi.exceptions.UniqueConstraintViolation;
 import group.bonjai.bodhi.models.Department;
 import group.bonjai.bodhi.models.Teacher;
 import group.bonjai.bodhi.repositories.DepartmentRepository;
@@ -23,18 +24,42 @@ public class DepartmentServiceImpl implements  DepartmentService{
     * @param Department object without id
     * @param Teacher object without id
     *
-    * Create a new Department in db
+    * Checks if department name already exists
+    * Checks if department shortname already exists
+    *
+    * Creates a new Department in db
     * Associates Teacher with Department
-    * Create a new Teacher in db
+    * Creates a new Teacher in db
     *
     * @returns persisted Department object with id
     * */
     @Override
-    public Department createNewDepartment(Department department, Teacher hod) {
+    public Department createNewDepartment(Department department, Teacher hod)
+            throws UniqueConstraintViolation {
+
+        if(departmentRepository.existsByFullName(department.getFullName())){
+            throw new UniqueConstraintViolation("fullName",
+                    "Department "+department.getFullName()+" already exists");
+        }
+
+        if(departmentRepository.existsByShortName(department.getShortName())){
+            throw new UniqueConstraintViolation("shortName",
+                    "ShortName "+department.getShortName()+" already exists");
+        }
+        if(teacherRepository.existsByEmail(hod.getEmail())){
+            throw new UniqueConstraintViolation("email",
+                    "Hod with email "+hod.getEmail()+" already exists");
+        }
+        if(teacherRepository.existsByPhoneNumber(hod.getPhoneNumber())){
+            throw new UniqueConstraintViolation("phoneNumber",
+                    "Hod with phone "+hod.getPhoneNumber()+" already exists");
+        }
+
         Department persistedDepartment = departmentRepository.save(department);
+
         hod.setDepartment(persistedDepartment);
         teacherRepository.save(hod);
-        System.out.println(persistedDepartment);
+
         return persistedDepartment;
     }
 

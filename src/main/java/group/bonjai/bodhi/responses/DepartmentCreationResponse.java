@@ -1,6 +1,5 @@
 package group.bonjai.bodhi.responses;
 
-import group.bonjai.bodhi.requests.DepartmentCreationRequest;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
