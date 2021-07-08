@@ -31,6 +31,9 @@ public class CreateDepartmentController {
 
         Teacher hod = Teacher.builder()
                                  .email(request.getHodEmail())
+                                 .firstName(request.getHodFirstName())
+                                 .middleName(request.getHodMiddleName())
+                                  .lastName(request.getHodLastName())
                                  .phoneNumber(request.getHodPhoneNumber())
                                  .password("PASSWORD")
                                  .role(Teacher.HOD)
