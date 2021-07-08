@@ -3,9 +3,9 @@ package group.bonjai.bodhi.controllers;
 import group.bonjai.bodhi.exceptions.UniqueConstraintViolation;
 import group.bonjai.bodhi.models.Department;
 import group.bonjai.bodhi.models.Teacher;
-import group.bonjai.bodhi.requests.DepartmentCreationRequest;
-import group.bonjai.bodhi.responses.DepartmentCreationResponse;
-import group.bonjai.bodhi.services.DepartmentService;
+import group.bonjai.bodhi.requests.CreateDepartmentRequest;
+import group.bonjai.bodhi.responses.CreateDepartmentResponse;
+import group.bonjai.bodhi.usecases.ICreateDepartmentUseCase;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +14,15 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/departments")
-public class DepartmentController {
-    private final DepartmentService departmentService;
+public class CreateDepartmentController {
+    private final ICreateDepartmentUseCase createDepartmentUseCase;
 
-    public DepartmentController(DepartmentService departmentService) {
-        this.departmentService = departmentService;
+    public CreateDepartmentController(ICreateDepartmentUseCase createDepartmentUseCase) {
+        this.createDepartmentUseCase = createDepartmentUseCase;
     }
 
     @PostMapping(value = "/")
-    public DepartmentCreationResponse createDepartment(@Valid @RequestBody DepartmentCreationRequest request) throws UniqueConstraintViolation {
+    public CreateDepartmentResponse createDepartment(@Valid @RequestBody CreateDepartmentRequest request) throws UniqueConstraintViolation {
         Department department = Department.builder()
                                 .fullName(request.getFullName())
                                 .shortName(request.getShortName())
@@ -36,22 +36,12 @@ public class DepartmentController {
                                  .role(Teacher.HOD)
                                  .build();
 
-        Department persistedDepartment = departmentService.createNewDepartment(department, hod);
+        Department persistedDepartment = createDepartmentUseCase.execute(department, hod);
 
-        return new DepartmentCreationResponse(HttpStatus.CREATED)
+        return new CreateDepartmentResponse(HttpStatus.CREATED)
                         .departmentUUID(persistedDepartment.getId())
                         .departmentFullName(persistedDepartment.getFullName())
                         .departmentShortName(persistedDepartment.getShortName());
 
-    }
-
-    @GetMapping("/")
-    public Page<Department> showDepartments(@RequestParam(required = false) Integer page,
-                                            @RequestParam(required = false) Integer size){
-
-        page = page==null ? 1 : page ;
-        size = size == null ? 10 : size;
-        System.out.println("departmentService "+departmentService);
-        return departmentService.getDepartments(page, size);
     }
 }

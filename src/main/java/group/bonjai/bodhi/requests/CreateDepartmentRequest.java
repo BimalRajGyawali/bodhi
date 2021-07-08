@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @AllArgsConstructor
-public class DepartmentCreationRequest extends HttpRequest {
+public class CreateDepartmentRequest extends HttpRequest {
     @NotBlank(message = "FullName cannot be empty")
     private final String fullName;
 
