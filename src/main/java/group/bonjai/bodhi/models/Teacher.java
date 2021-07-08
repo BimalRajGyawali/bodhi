@@ -25,6 +25,14 @@ public class Teacher {
     @GeneratedValue
     private UUID id;
 
+    @Column(nullable = false)
+    private String firstName;
+
+    private String middleName;
+
+    @Column(nullable = false)
+    private String lastName;
+
     @Column(unique = true, nullable = false)
     private String email;
 
