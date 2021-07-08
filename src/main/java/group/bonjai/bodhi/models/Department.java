@@ -12,9 +12,9 @@ import java.util.UUID;
 @Data
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-@NoArgsConstructor()
+@NoArgsConstructor
 @Getter
-@Setter()
+@Setter
 public class Department {
 
     @Id

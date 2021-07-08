@@ -1,13 +1,12 @@
 package group.bonjai.bodhi.responses;
 
-import group.bonjai.bodhi.requests.DepartmentCreationRequest;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 import java.util.UUID;
 
-public class DepartmentCreationResponse extends HttpResponse{
+public class CreateDepartmentResponse extends HttpResponse{
 
     @Data
     final static class PersistedDepartment implements Serializable {
@@ -18,19 +17,19 @@ public class DepartmentCreationResponse extends HttpResponse{
 
     private PersistedDepartment persistedDepartment;
 
-    public DepartmentCreationResponse(HttpStatus status) {
+    public CreateDepartmentResponse(HttpStatus status) {
         super(status);
         this.persistedDepartment = new PersistedDepartment();
     }
-    public DepartmentCreationResponse departmentUUID(UUID id){
+    public CreateDepartmentResponse departmentUUID(UUID id){
         persistedDepartment.setId(id);
         return this;
     }
-    public DepartmentCreationResponse departmentFullName(String fullName){
+    public CreateDepartmentResponse departmentFullName(String fullName){
         persistedDepartment.setFullName(fullName);
         return this;
     }
-    public DepartmentCreationResponse departmentShortName(String shortName){
+    public CreateDepartmentResponse departmentShortName(String shortName){
         persistedDepartment.setShortName(shortName);
         return this;
     }
@@ -39,7 +38,7 @@ public class DepartmentCreationResponse extends HttpResponse{
         return persistedDepartment;
     }
 
-    public DepartmentCreationResponse setPersistedDepartment(PersistedDepartment persistedDepartment) {
+    public CreateDepartmentResponse setPersistedDepartment(PersistedDepartment persistedDepartment) {
         this.persistedDepartment = persistedDepartment;
         return this;
     }
