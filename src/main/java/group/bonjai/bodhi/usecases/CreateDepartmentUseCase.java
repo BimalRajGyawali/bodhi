@@ -1,20 +1,18 @@
-package group.bonjai.bodhi.services;
+package group.bonjai.bodhi.usecases;
 
 import group.bonjai.bodhi.exceptions.UniqueConstraintViolation;
 import group.bonjai.bodhi.models.Department;
 import group.bonjai.bodhi.models.Teacher;
 import group.bonjai.bodhi.repositories.DepartmentRepository;
 import group.bonjai.bodhi.repositories.TeacherRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DepartmentServiceImpl implements  DepartmentService{
+public class CreateDepartmentUseCase implements ICreateDepartmentUseCase {
     private final DepartmentRepository departmentRepository;
     private final TeacherRepository teacherRepository;
 
-    public DepartmentServiceImpl(DepartmentRepository departmentRepository, TeacherRepository teacherRepository) {
+    public CreateDepartmentUseCase(DepartmentRepository departmentRepository, TeacherRepository teacherRepository) {
         this.departmentRepository = departmentRepository;
         this.teacherRepository = teacherRepository;
     }
@@ -34,7 +32,7 @@ public class DepartmentServiceImpl implements  DepartmentService{
     * @returns persisted Department object with id
     * */
     @Override
-    public Department createNewDepartment(Department department, Teacher hod)
+    public Department execute(Department department, Teacher hod)
             throws UniqueConstraintViolation {
 
         if(departmentRepository.existsByFullName(department.getFullName())){
@@ -63,8 +61,4 @@ public class DepartmentServiceImpl implements  DepartmentService{
         return persistedDepartment;
     }
 
-    @Override
-    public Page<Department> getDepartments(int page, int pageSize) {
-         return departmentRepository.findAll(PageRequest.of(page, pageSize));
-    }
 }
