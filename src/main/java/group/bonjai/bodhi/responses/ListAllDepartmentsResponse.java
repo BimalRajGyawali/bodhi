@@ -1,7 +1,7 @@
 package group.bonjai.bodhi.responses;
 
 import group.bonjai.bodhi.models.Department;
-import group.bonjai.bodhi.models.Teacher;
+import group.bonjai.bodhi.models.DepartmentMember;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
@@ -17,7 +17,7 @@ public class ListAllDepartmentsResponse extends HttpResponse {
         private final UUID id;
         private final String fullName;
         private final String shortName;
-        private final List<HodRecord> hodRecords;
+        private final HodRecord hodRecord;
     }
 
     @Data
@@ -33,22 +33,21 @@ public class ListAllDepartmentsResponse extends HttpResponse {
 
     private List<DepartmentRecord> departmentRecords = new ArrayList<>();
 
-    public ListAllDepartmentsResponse(HttpStatus status, Map<Department, List<Teacher>> departmentTeachersMap) {
+    public ListAllDepartmentsResponse(HttpStatus status, Map<Department, DepartmentMember> departmentHodMap) {
         super(status);
-
-        this.departmentRecords = departmentTeachersMap.entrySet().stream()
+        System.out.println(departmentHodMap);
+        this.departmentRecords = departmentHodMap.entrySet().stream()
                 .map(entry -> {
+                        DepartmentMember hod = entry.getValue();
 
-                    List<HodRecord> hodRecords = entry.getValue().stream()
-                            .map(teacher -> new HodRecord(teacher.getId(), teacher.getFirstName(), teacher.getMiddleName(),
-                                    teacher.getLastName(), teacher.getEmail(), teacher.getPhoneNumber()))
-                            .collect(Collectors.toList());
+                            HodRecord hodRecord = new HodRecord(hod.getId(), hod.getFirstName(), hod.getMiddleName(),
+                                    hod.getLastName(), hod.getEmail(), hod.getPhoneNumber());
 
 
                     return new DepartmentRecord(entry.getKey().getId(),
                             entry.getKey().getFullName(),
                             entry.getKey().getShortName(),
-                            hodRecords);
+                            hodRecord);
                 })
                 .collect(Collectors.toList());
     }

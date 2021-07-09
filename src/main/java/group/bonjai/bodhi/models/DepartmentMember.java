@@ -17,9 +17,10 @@ Lombok Builder needs package level All args constructor
 @NoArgsConstructor()
 @Getter
 @Setter()
-public class Teacher {
+public class DepartmentMember {
     public static final String TEACHER = "TEACHER";
     public static final String HOD = "HOD";
+    public static final String ASSISTANT = "ASSISTANT";
 
     @Id
     @GeneratedValue

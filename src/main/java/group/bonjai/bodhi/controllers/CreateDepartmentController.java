@@ -2,11 +2,10 @@ package group.bonjai.bodhi.controllers;
 
 import group.bonjai.bodhi.exceptions.UniqueConstraintViolation;
 import group.bonjai.bodhi.models.Department;
-import group.bonjai.bodhi.models.Teacher;
+import group.bonjai.bodhi.models.DepartmentMember;
 import group.bonjai.bodhi.requests.CreateDepartmentRequest;
 import group.bonjai.bodhi.responses.CreateDepartmentResponse;
 import group.bonjai.bodhi.usecases.ICreateDepartmentUseCase;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,14 +28,14 @@ public class CreateDepartmentController {
                 .build();
 
 
-        Teacher hod = Teacher.builder()
+        DepartmentMember hod = DepartmentMember.builder()
                 .email(request.getHodEmail())
                 .firstName(request.getHodFirstName())
                 .middleName(request.getHodMiddleName())
                 .lastName(request.getHodLastName())
                 .phoneNumber(request.getHodPhoneNumber())
                 .password("PASSWORD")
-                .role(Teacher.HOD)
+                .role(DepartmentMember.HOD)
                 .build();
 
         Department persistedDepartment = createDepartmentUseCase.execute(department, hod);
