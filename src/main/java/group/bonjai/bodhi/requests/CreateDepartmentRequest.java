@@ -15,6 +15,14 @@ public class CreateDepartmentRequest extends HttpRequest {
     @NotBlank(message = "ShortName cannot be empty")
     private final String shortName;
 
+    @NotBlank(message = "FirstName cannot be blank")
+    private final String hodFirstName;
+
+    private final String hodMiddleName;
+
+    @NotBlank(message = "LastName cannot be blank")
+    private final String hodLastName;
+
     @Email(message = "Email should be valid")
     private final String hodEmail;
 
