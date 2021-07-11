@@ -10,10 +10,14 @@ import java.time.LocalDateTime;
 public abstract class HttpResponse implements Serializable {
     protected final LocalDateTime timestamp;
     protected final HttpStatus status;
+    protected final boolean success;
 
-    public HttpResponse(HttpStatus status) {
+    public HttpResponse(HttpStatus status, boolean success) {
        this.status = status;
         this.timestamp = LocalDateTime.now();
+        this.success = success;
     }
-
+    public HttpResponse(HttpStatus status){
+        this(status, true);
+    }
 }
