@@ -28,7 +28,7 @@ public class UpdateDepartmentController {
                 .shortName(request.getNewShortName())
                 .build();
 
-         Department updatedDepartment = updateDepartmentUseCase.execute(department);
+        Department updatedDepartment = updateDepartmentUseCase.execute(department);
         return new UpdateDepartmentResponse(HttpStatus.OK, updatedDepartment) ;
     }
 }
