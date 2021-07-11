@@ -8,7 +8,7 @@ public class FailureResponse extends HttpResponse{
     private Map<String, String> failureMessage;
 
     public FailureResponse(HttpStatus status, Map<String, String> failureMessage){
-        super(status);
+        super(status, false);
         this.failureMessage = failureMessage;
     }
 
