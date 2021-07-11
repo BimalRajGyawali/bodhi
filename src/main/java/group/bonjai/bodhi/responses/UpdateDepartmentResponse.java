@@ -26,9 +26,5 @@ public class UpdateDepartmentResponse extends HttpResponse{
     public UpdatedDepartment getUpdatedDepartment() {
         return updatedDepartment;
     }
-//
-//    public UpdateDepartmentResponse setUpdatedDepartment(UpdatedDepartment updatedDepartment) {
-//        this.updatedDepartment = updatedDepartment;
-//        return this;
-//    }
+
 }
