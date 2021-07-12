@@ -1,6 +1,8 @@
 package group.bonjai.bodhi.models;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -48,5 +50,6 @@ public class DepartmentMember {
 
     @JoinColumn(nullable = false)
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Department department;
 }
