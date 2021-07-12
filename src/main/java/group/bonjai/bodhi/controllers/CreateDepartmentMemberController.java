@@ -5,7 +5,6 @@ import group.bonjai.bodhi.exceptions.UniqueConstraintViolation;
 import group.bonjai.bodhi.models.DepartmentMember;
 import group.bonjai.bodhi.requests.CreateDepartmentMemberRequest;
 import group.bonjai.bodhi.responses.CreateDepartmentMemberResponse;
-import group.bonjai.bodhi.usecases.CreateDepartmentMemberUseCase;
 import group.bonjai.bodhi.usecases.ICreateDepartmentMemberUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
