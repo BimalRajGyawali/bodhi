@@ -5,19 +5,19 @@ import org.springframework.http.HttpStatus;
 import java.util.Map;
 
 public class FailureResponse extends HttpResponse{
-    private Map<String, String> failureMessage;
+    private Map<String, String> message;
 
-    public FailureResponse(HttpStatus status, Map<String, String> failureMessage){
+    public FailureResponse(HttpStatus status, Map<String, String> message){
         super(status, false);
-        this.failureMessage = failureMessage;
+        this.message = message;
     }
 
-    public Map<String, String> getFailureMessage() {
-        return failureMessage;
+    public Map<String, String> getMessage() {
+        return message;
     }
 
-    public FailureResponse setFailureMessage(Map<String, String> failureMessage) {
-        this.failureMessage = failureMessage;
+    public FailureResponse setMessage(Map<String, String> message) {
+        this.message = message;
         return this;
     }
 }

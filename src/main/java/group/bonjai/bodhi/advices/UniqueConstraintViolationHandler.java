@@ -13,6 +13,6 @@ public class UniqueConstraintViolationHandler {
     @ExceptionHandler
     public ResponseEntity<FailureResponse> handle(UniqueConstraintViolation e){
         FailureResponse response = new FailureResponse(HttpStatus.BAD_REQUEST, e.getMessageMap());
-        return new ResponseEntity<>(response.setFailureMessage(e.getMessageMap()), response.getStatus()) ;
+        return new ResponseEntity<>(response.setMessage(e.getMessageMap()), response.getStatus()) ;
     }
 }
