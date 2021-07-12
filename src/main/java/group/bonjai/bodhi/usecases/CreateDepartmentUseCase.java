@@ -1,6 +1,6 @@
 package group.bonjai.bodhi.usecases;
 
-import group.bonjai.bodhi.exceptions.UniqueConstraintViolation;
+import group.bonjai.bodhi.exceptions.ConstraintViolation;
 import group.bonjai.bodhi.models.Department;
 import group.bonjai.bodhi.models.DepartmentMember;
 import group.bonjai.bodhi.repositories.DepartmentRepository;
@@ -33,23 +33,23 @@ public class CreateDepartmentUseCase implements ICreateDepartmentUseCase {
     * */
     @Override
     public Department execute(Department department, DepartmentMember hod)
-            throws UniqueConstraintViolation {
+            throws ConstraintViolation {
 
         if(departmentRepository.existsByFullName(department.getFullName())){
-            throw new UniqueConstraintViolation("fullName",
+            throw new ConstraintViolation("fullName",
                     "Department "+department.getFullName()+" already exists");
         }
 
         if(departmentRepository.existsByShortName(department.getShortName())){
-            throw new UniqueConstraintViolation("shortName",
+            throw new ConstraintViolation("shortName",
                     "ShortName "+department.getShortName()+" already exists");
         }
         if(departmentMemberRepository.existsByEmail(hod.getEmail())){
-            throw new UniqueConstraintViolation("email",
+            throw new ConstraintViolation("email",
                     "Hod with email "+hod.getEmail()+" already exists");
         }
         if(departmentMemberRepository.existsByPhoneNumber(hod.getPhoneNumber())){
-            throw new UniqueConstraintViolation("phoneNumber",
+            throw new ConstraintViolation("phoneNumber",
                     "Hod with phone "+hod.getPhoneNumber()+" already exists");
         }
 

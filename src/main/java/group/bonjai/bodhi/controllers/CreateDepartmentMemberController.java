@@ -1,7 +1,7 @@
 package group.bonjai.bodhi.controllers;
 
 import group.bonjai.bodhi.exceptions.ResourceNotFound;
-import group.bonjai.bodhi.exceptions.UniqueConstraintViolation;
+import group.bonjai.bodhi.exceptions.ConstraintViolation;
 import group.bonjai.bodhi.models.DepartmentMember;
 import group.bonjai.bodhi.requests.CreateDepartmentMemberRequest;
 import group.bonjai.bodhi.responses.CreateDepartmentMemberResponse;
@@ -24,7 +24,7 @@ public class CreateDepartmentMemberController {
 
     @PostMapping("/departmentmembers")
     public CreateDepartmentMemberResponse create(@Valid @RequestBody CreateDepartmentMemberRequest request)
-            throws UniqueConstraintViolation, ResourceNotFound {
+            throws ConstraintViolation, ResourceNotFound {
 
         DepartmentMember departmentMemberToBeCreated = DepartmentMember.builder()
                 .firstName(request.getFirstName())
