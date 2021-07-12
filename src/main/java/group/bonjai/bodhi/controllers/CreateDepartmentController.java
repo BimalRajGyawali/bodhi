@@ -1,6 +1,6 @@
 package group.bonjai.bodhi.controllers;
 
-import group.bonjai.bodhi.exceptions.UniqueConstraintViolation;
+import group.bonjai.bodhi.exceptions.ConstraintViolation;
 import group.bonjai.bodhi.models.Department;
 import group.bonjai.bodhi.models.DepartmentMember;
 import group.bonjai.bodhi.requests.CreateDepartmentRequest;
@@ -21,7 +21,7 @@ public class CreateDepartmentController {
     }
 
     @PostMapping(value = "/")
-    public CreateDepartmentResponse createDepartment(@Valid @RequestBody CreateDepartmentRequest request) throws UniqueConstraintViolation {
+    public CreateDepartmentResponse createDepartment(@Valid @RequestBody CreateDepartmentRequest request) throws ConstraintViolation {
         Department department = Department.builder()
                 .fullName(request.getFullName())
                 .shortName(request.getShortName())
