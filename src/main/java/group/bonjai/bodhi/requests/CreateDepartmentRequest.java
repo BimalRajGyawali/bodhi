@@ -1,7 +1,9 @@
 package group.bonjai.bodhi.requests;
 
+import group.bonjai.bodhi.controllers.CreateDepartmentController;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -9,23 +11,29 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @AllArgsConstructor
 public class CreateDepartmentRequest extends HttpRequest {
+
+    public CreateDepartmentRequest(){
+
+    }
     @NotBlank(message = "FullName cannot be empty")
-    private final String fullName;
+    private  String fullName;
 
     @NotBlank(message = "ShortName cannot be empty")
-    private final String shortName;
+    private  String shortName;
 
     @NotBlank(message = "FirstName cannot be blank")
-    private final String hodFirstName;
+    private  String hodFirstName;
 
-    private final String hodMiddleName;
+    private  String hodMiddleName;
 
     @NotBlank(message = "LastName cannot be blank")
-    private final String hodLastName;
+    private  String hodLastName;
 
     @Email(message = "Email should be valid")
-    private final String hodEmail;
+    @NotBlank(message = "Email cannot be blank")
+    private  String hodEmail;
 
-    private final String hodPhoneNumber;
+    @NotBlank(message = "PhoneNumber cannot be blank")
+    private  String hodPhoneNumber;
 
 }

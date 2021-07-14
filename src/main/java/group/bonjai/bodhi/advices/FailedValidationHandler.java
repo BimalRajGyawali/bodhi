@@ -23,7 +23,7 @@ public class FailedValidationHandler {
                     String errorMessage = ((FieldError) error).getDefaultMessage();
                     failureMessageMap.put(fieldName, errorMessage);
         });
-        FailureResponse failureResponse = new FailureResponse(HttpStatus.BAD_REQUEST, failureMessageMap);
+        FailureResponse failureResponse = new FailureResponse(HttpStatus.OK, failureMessageMap);
         return new ResponseEntity<>(failureResponse, failureResponse.getStatus());
     }
 }
