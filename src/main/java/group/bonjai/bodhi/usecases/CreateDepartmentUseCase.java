@@ -45,11 +45,11 @@ public class CreateDepartmentUseCase implements ICreateDepartmentUseCase {
                     "ShortName "+department.getShortName()+" already exists");
         }
         if(departmentMemberRepository.existsByEmail(hod.getEmail())){
-            throw new ConstraintViolation("email",
+            throw new ConstraintViolation("hodEmail",
                     "Hod with email "+hod.getEmail()+" already exists");
         }
         if(departmentMemberRepository.existsByPhoneNumber(hod.getPhoneNumber())){
-            throw new ConstraintViolation("phoneNumber",
+            throw new ConstraintViolation("hodPhoneNumber",
                     "Hod with phone "+hod.getPhoneNumber()+" already exists");
         }
 

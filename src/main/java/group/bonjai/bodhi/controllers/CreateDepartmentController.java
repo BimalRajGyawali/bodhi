@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 @RestController
 @RequestMapping(path = "/departments")
@@ -24,7 +25,7 @@ public class CreateDepartmentController {
     public CreateDepartmentResponse createDepartment(@Valid @RequestBody CreateDepartmentRequest request) throws ConstraintViolation {
         Department department = Department.builder()
                 .fullName(request.getFullName())
-                .shortName(request.getShortName())
+                .shortName(request.getShortName().toUpperCase())
                 .build();
 
 

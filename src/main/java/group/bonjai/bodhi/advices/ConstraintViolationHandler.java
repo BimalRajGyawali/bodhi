@@ -12,7 +12,7 @@ public class ConstraintViolationHandler {
 
     @ExceptionHandler
     public ResponseEntity<FailureResponse> handle(ConstraintViolation e){
-        FailureResponse response = new FailureResponse(HttpStatus.BAD_REQUEST, e.getMessageMap());
+        FailureResponse response = new FailureResponse(HttpStatus.OK, e.getMessageMap());
         return new ResponseEntity<>(response.setMessage(e.getMessageMap()), response.getStatus()) ;
     }
 }

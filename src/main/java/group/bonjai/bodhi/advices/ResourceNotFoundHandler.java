@@ -12,7 +12,7 @@ public class ResourceNotFoundHandler {
 
     @ExceptionHandler
     public ResponseEntity<FailureResponse> handle(ResourceNotFound e){
-        FailureResponse failureResponse = new FailureResponse(HttpStatus.NOT_FOUND, e.getMessageMap());
+        FailureResponse failureResponse = new FailureResponse(HttpStatus.OK, e.getMessageMap());
         return new ResponseEntity<>(failureResponse, failureResponse.getStatus());
     }
 }
