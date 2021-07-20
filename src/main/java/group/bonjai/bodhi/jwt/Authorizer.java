@@ -15,7 +15,9 @@ public class Authorizer {
 
     public static User authorizeIfUserHasAuthority(Set<String> permittedAuthorities,
                                                       Authentication authentication) throws UnAuthorized {
-
+        if(authentication == null){
+            throw new UnAuthorized();
+        }
         // A user has only one authority( defined in Roles.java )
         String email = authentication.getName();
         String authorityOfCurrentUser = authentication.getAuthorities().iterator().next().getAuthority();

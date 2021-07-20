@@ -10,15 +10,10 @@ import group.bonjai.bodhi.responses.ListAllDepartmentsResponse;
 import group.bonjai.bodhi.usecases.ListAllDepartmentsUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 @RestController

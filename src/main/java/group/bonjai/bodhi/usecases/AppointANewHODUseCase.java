@@ -46,8 +46,9 @@ public class AppointANewHODUseCase implements IAppointANewHODUseCase{
             throw new ConstraintViolation("newHODId", newHODId+" is already a HOD");
         }
 
+        // oldHOD is never null
         DepartmentMember oldHOD = departmentMemberRepository.
-                findByDepartmentAndRole(newHOD.getDepartment(), DepartmentMember.HOD);
+                findByDepartmentAndRole(newHOD.getDepartment(), DepartmentMember.HOD).get();
 
 
         oldHOD.setRole(newRoleOfOldHOD);

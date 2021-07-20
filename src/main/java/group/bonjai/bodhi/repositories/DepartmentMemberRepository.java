@@ -13,6 +13,7 @@ import java.util.UUID;
 public interface DepartmentMemberRepository extends JpaRepository<DepartmentMember, UUID>{
     boolean existsByEmail(String email);
     boolean existsByPhoneNumber(String phoneNumber);
-    DepartmentMember findByDepartmentAndRole(Department department, String role);
+    Optional<DepartmentMember> findByDepartmentAndRole(Department department, String role);
+    Optional<DepartmentMember> findByDepartmentAndEmailAndRole(Department department, String email, String role);
     Optional<DepartmentMember> findByEmail(String email);
 }
