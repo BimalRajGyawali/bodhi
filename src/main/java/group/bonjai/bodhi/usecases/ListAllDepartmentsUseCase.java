@@ -25,7 +25,7 @@ public class ListAllDepartmentsUseCase implements IListAllDepartmentsUseCase {
         Map<Department, DepartmentMember> departmentHodMap = new HashMap<>();
         List<Department> departments = departmentRepository.findAll();
         departments.forEach(department -> departmentHodMap.put(department,
-                departmentMemberRepository.findByDepartmentAndRole(department, DepartmentMember.HOD))
+                departmentMemberRepository.findByDepartmentAndRole(department, DepartmentMember.HOD).get())
         );
         return departmentHodMap;
     }
