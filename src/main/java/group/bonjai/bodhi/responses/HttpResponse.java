@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 
 @Getter
 public abstract class HttpResponse implements Serializable {
-    protected final LocalDateTime timestamp;
+    protected final String timestamp;
     protected final HttpStatus status;
     protected final boolean success;
 
     public HttpResponse(HttpStatus status, boolean success) {
        this.status = status;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = LocalDateTime.now().toString();
         this.success = success;
     }
     public HttpResponse(HttpStatus status){

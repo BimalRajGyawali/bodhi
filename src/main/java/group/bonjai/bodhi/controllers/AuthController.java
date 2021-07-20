@@ -1,7 +1,7 @@
 package group.bonjai.bodhi.controllers;
 
 import group.bonjai.bodhi.jwt.JwtUtil;
-import group.bonjai.bodhi.jwt.MyUserDetailsService;
+import group.bonjai.bodhi.jwt.UserDetailsServiceImpl;
 import group.bonjai.bodhi.requests.AuthenticationRequest;
 import group.bonjai.bodhi.responses.AuthenticationResponse;
 import org.springframework.http.HttpStatus;
@@ -18,10 +18,10 @@ import javax.validation.Valid;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtTokenUtil;
-    private final MyUserDetailsService userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
 
-    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtTokenUtil, MyUserDetailsService userDetailsService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtTokenUtil, UserDetailsServiceImpl userDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
