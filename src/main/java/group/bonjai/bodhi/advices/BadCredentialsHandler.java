@@ -18,7 +18,7 @@ public class BadCredentialsHandler {
     public ResponseEntity<FailureResponse> handle(BadCredentialsException e){
         Map<String, String> messageMap = new HashMap<>();
         messageMap.put("message", "Invalid credentials");
-        FailureResponse response = new FailureResponse(HttpStatus.OK, messageMap);
-        return new ResponseEntity<>(response, response.getStatus()) ;
+        FailureResponse response = new FailureResponse(HttpStatus.BAD_REQUEST, messageMap);
+        return new ResponseEntity<>(response, HttpStatus.OK) ;
     }
 }
