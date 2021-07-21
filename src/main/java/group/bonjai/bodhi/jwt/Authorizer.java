@@ -3,11 +3,7 @@ package group.bonjai.bodhi.jwt;
 import group.bonjai.bodhi.exceptions.UnAuthorized;
 import group.bonjai.bodhi.models.User;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.Set;
 
 

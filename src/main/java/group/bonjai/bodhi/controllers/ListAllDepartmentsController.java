@@ -25,7 +25,7 @@ public class ListAllDepartmentsController {
     }
 
     @GetMapping("/departments")
-    public ListAllDepartmentsResponse listAllDepartment(Authentication authentication)
+    public ListAllDepartmentsResponse listAllDepartments(Authentication authentication)
     throws UnAuthorized {
 
         User user = Authorizer.authorizeIfUserHasAuthority(
