@@ -40,7 +40,7 @@ public class ListAllDepartmentNoticesController {
 //                ),
 //                authentication
 //        );
-        User user = new User("","");
+        User user = new User("biren@gmail.com",Roles.HOD);
         List<DepartmentNotice> departmentNotices =
                 listAllDepartmentNoticesUseCase.execute(departmentId, user);
 
