@@ -25,13 +25,13 @@ public class ListAllDepartmentsController {
     }
 
     @GetMapping("/departments")
-    public ListAllDepartmentsResponse listAllDepartment(Authentication authentication)
+    public ListAllDepartmentsResponse listAllDepartments(Authentication authentication)
     throws UnAuthorized {
 
-        User user = Authorizer.authorizeIfUserHasAuthority(
-                Collections.singleton(Roles.ADMIN),
-                authentication
-        );
+//        User user = Authorizer.authorizeIfUserHasAuthority(
+//                Collections.singleton(Roles.ADMIN),
+//                authentication
+//        );
         Map<Department, DepartmentMember> departmentHodMap = listAllDepartmentsUseCase.execute();
 
         return new ListAllDepartmentsResponse(HttpStatus.OK, departmentHodMap);
